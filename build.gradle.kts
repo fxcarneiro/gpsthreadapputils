@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.androidLibrary)
-    id 'maven-publish' // Adiciona o plugin de publicação Maven
+    id("maven-publish")
 }
 
 android {
@@ -14,7 +14,7 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -39,37 +39,37 @@ dependencies {
 
 publishing {
     publications {
-        release(MavenPublication) {
-            from components.release
+        create<MavenPublication>("release") {
+            from(components["release"])
 
-                    groupId = 'com.ufla'
-            artifactId = 'gpsthreadapputils'
-            version = '1.0.0'
+            groupId = "com.ufla"
+            artifactId = "gpsthreadapputils"
+            version = "1.0.0"
 
             pom {
-                name = 'GpsThreadAppUtils'
-                description = 'Utilities for GPS threading in Android apps'
-                url = 'https://github.com/fxcarneiro/gpsthreadapputils'
+                name.set("GpsThreadAppUtils")
+                description.set("Utilities for GPS threading in Android apps")
+                url.set("https://github.com/fxcarneiro/gpsthreadapputils")
 
                 licenses {
                     license {
-                        name = 'The Apache License, Version 2.0'
-                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        name.set("The Apache License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
                     }
                 }
 
                 developers {
                     developer {
-                        id = 'yourId'
-                        name = 'Your Name'
-                        email = 'you@example.com'
+                        id.set("yourId")
+                        name.set("Your Name")
+                        email.set("you@example.com")
                     }
                 }
 
                 scm {
-                    connection = 'scm:git:git://github.com/fxcarneiro/gpsthreadapputils.git'
-                    developerConnection = 'scm:git:ssh://github.com:fxcarneiro/gpsthreadapputils.git'
-                    url = 'https://github.com/fxcarneiro/gpsthreadapputils'
+                    connection.set("scm:git:git://github.com/fxcarneiro/gpsthreadapputils.git")
+                    developerConnection.set("scm:git:ssh://github.com:fxcarneiro/gpsthreadapputils.git")
+                    url.set("https://github.com/fxcarneiro/gpsthreadapputils")
                 }
             }
         }
